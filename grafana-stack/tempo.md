@@ -1,0 +1,1 @@
+https://github.com/grafana/tempo/blob/main/example/docker-compose/shared/tempo.yaml
