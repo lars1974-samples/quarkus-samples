@@ -12,5 +12,6 @@
 
     <modules>
         <module>app-a</module>
+        <module>weather-app</module>
     </modules>
 </project>

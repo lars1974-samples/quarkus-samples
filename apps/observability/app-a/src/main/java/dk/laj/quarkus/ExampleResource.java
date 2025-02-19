@@ -7,6 +7,8 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
+import java.util.concurrent.ExecutionException;
+
 
 @Path("/hello")
 public class ExampleResource {
@@ -16,13 +18,14 @@ public class ExampleResource {
         this.exampleService = exampleService;
     }
 
+    @Inject
+    WeatherService weatherService;
+
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String hello() {
+    @Produces(MediaType.APPLICATION_JSON)
+    public Weather hello() throws ExecutionException, InterruptedException {
 
-        exampleService.doSomething();
-
-        return "Hello from Quarkus REST "+ System.currentTimeMillis();
+    return weatherService.getWatherSync();
 
     }
 
