@@ -1,4 +1,4 @@
-package dk.laj.quarkus;
+package dk.laj.quarkus.weather;
 
 public class Weather {
     private int temperature;

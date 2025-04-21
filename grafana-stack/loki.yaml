@@ -1,0 +1,6 @@
+server:
+  http_listen_port: 3100
+
+gelf:
+  listen_address: 0.0.0.0:12201
+  listen_protocol: tcp  # Kan også være "udp"

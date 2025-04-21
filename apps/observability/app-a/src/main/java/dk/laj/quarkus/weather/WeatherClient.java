@@ -1,9 +1,6 @@
-package dk.laj.quarkus;
+package dk.laj.quarkus.weather;
 
-import io.opentelemetry.instrumentation.annotations.WithSpan;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
@@ -13,12 +10,12 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 public interface WeatherClient {
 
     @GET
-    @Path("/great-weather-today")
+    @Path("/precise-weather/{city}")
     @Produces(MediaType.APPLICATION_JSON)
-    Weather greatWeatherToday();
+    Weather getPreciseWeather(@PathParam("city") String city);
 
     @GET
-    @Path("/city-weather")
+    @Path("/fast-weather")
     @Produces(MediaType.APPLICATION_JSON)
-    Weather cityWeather();
+    Weather getFastWeather(@QueryParam("city") String city);
 }

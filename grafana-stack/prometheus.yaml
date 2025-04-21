@@ -1,7 +1,9 @@
 global:
   scrape_interval: 15s
 
+
 scrape_configs:
-  - job_name: "prometheus"
+  - job_name: 'quarkus-app'  # Navn på dit scrape job
+    metrics_path: '/q/metrics'
     static_configs:
-      - targets: ["localhost:8090"]
+      - targets: ['host.docker.internal:8090']  # Hvis Prometheus kører i Docker

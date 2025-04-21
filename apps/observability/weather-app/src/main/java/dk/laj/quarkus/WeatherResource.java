@@ -1,10 +1,7 @@
 package dk.laj.quarkus;
 
 
-
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 
 import java.util.Random;
@@ -14,31 +11,23 @@ import java.util.Random;
 public class WeatherResource {
     Random random = new Random();
 
-
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/great-weather-today")
-    public Weather greatWhetherToday() {
+    @Path("/precise-weather/{city}")
+    public Weather preciseWeather(@PathParam("city") String city) {
         try {
-            Thread.sleep(3000);
+            Thread.sleep(1000 + random.nextInt(2000));
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
         random.nextInt(30);
         return new Weather(-10 + random.nextInt(30), random.nextInt(100));
-
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/city-weather")
-    public Weather hello() {
+    @Path("/fast-weather")
+    public Weather fastWeather(@QueryParam("city") String city) {
         return new Weather(-10 + random.nextInt(30), random.nextInt(100));
     }
-
-
-
-
-
-
 }

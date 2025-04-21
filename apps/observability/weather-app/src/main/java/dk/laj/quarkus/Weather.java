@@ -4,9 +4,7 @@ public class Weather {
     private int temperature;
     private int humidity;
 
-    public Weather() {
-
-    }
+    public Weather() {}
 
     public Weather(int temperature, int humidity) {
         this.temperature = temperature;

@@ -17,14 +17,20 @@ services:
       - "3000:3000"
     depends_on:
       - prometheus
+    volumes:
+      - ./grafana/datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
     environment:
-      - GF_SECURITY_ADMIN_PASSWORD=admin  # Standard password: admin
+      - GF_SECURITY_ADMIN_PASSWORD=password  # Standard password: admin
 
   loki:
-    image: grafana/loki
+    image: grafana/loki:latest
     container_name: loki
     ports:
       - "3100:3100"
+      - "12201:12201"  # Åbner TCP-port for GELF
+    volumes:
+      - ./loki.yaml:/etc/loki/loki-config.yaml
+    command: -config.file=/etc/loki/loki-config.yaml
 
 
   tempo:
